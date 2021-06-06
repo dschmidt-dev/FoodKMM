@@ -1,11 +1,6 @@
 package dev.dschmidt.foodkmm.android.presentation.navigation
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Button
-import androidx.compose.material.Divider
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.currentComposer
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.HiltViewModelFactory
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -14,7 +9,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
-import dev.dschmidt.foodkmm.Greeting
 import dev.dschmidt.foodkmm.android.presentation.recipe_detail.RecipeDetailScreen
 import dev.dschmidt.foodkmm.android.presentation.recipe_detail.RecipeDetailViewModel
 import dev.dschmidt.foodkmm.android.presentation.recipe_list.RecipeListScreen
