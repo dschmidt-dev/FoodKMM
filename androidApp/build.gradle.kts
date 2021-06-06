@@ -59,6 +59,7 @@ dependencies {
     kapt(Hilt.hiltCompiler)
 
     implementation(Kotlinx.datetime)
+    implementation(Ktor.android) //TODO why we need this here, i thougth that the network part should be part of the shared module and only there
 
     debugImplementation(SquareUp.leakCanary)
 }
