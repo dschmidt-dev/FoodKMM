@@ -7,8 +7,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.dschmidt.foodkmm.datasource.network.RecipeService
+import dev.dschmidt.foodkmm.datasource.network.interactors.recipe_details.GetRecipe
 import dev.dschmidt.foodkmm.domain.model.Recipe
 import dev.dschmidt.foodkmm.domain.util.DatetimeUtil
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,20 +19,29 @@ import javax.inject.Inject
 @HiltViewModel
 class RecipeDetailViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val recipeService: RecipeService): ViewModel() {
+    private val getRecipe: GetRecipe): ViewModel() {
 
     val recipe: MutableState<Recipe?> = mutableStateOf(null)
 
     init {
         savedStateHandle.get<Int>("recipeId")?.let { recipeId ->
-            viewModelScope.launch {
-                recipe.value = recipeService.get(recipeId)
-                println("KtorTest: ${recipe.value!!.title}")
-                println("KtorTest: ${recipe.value!!.ingredients}")
-                println("KtorTest: ${DatetimeUtil().humanizeDatetime(recipe.value!!.dateUpdated)}")
-
-            }
+            getRecipe(recipeId = recipeId)
         }
     }
+    
+    private fun getRecipe(recipeId: Int) {
+        getRecipe.execute(recipeId)
+            .onEach { dataState ->
+                println("RecipeDetailVM : ${dataState.isLoading}")
+                dataState.data?.let { recipe ->
+                    println("RecipeDetailVM : ${recipe}")
+                    this.recipe.value = recipe
 
+                }
+                dataState.message?.let { msg ->
+                    println("RecipeDetailVM : ${msg}")
+                }
+            }
+            .launchIn(viewModelScope)
+    }
 }
