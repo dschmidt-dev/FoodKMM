@@ -6,13 +6,10 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.dschmidt.foodkmm.datasource.network.RecipeService
-import dev.dschmidt.foodkmm.datasource.network.interactors.recipe_details.GetRecipe
+import dev.dschmidt.foodkmm.interactors.recipe_details.GetRecipe
 import dev.dschmidt.foodkmm.domain.model.Recipe
-import dev.dschmidt.foodkmm.domain.util.DatetimeUtil
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @ExperimentalStdlibApi
@@ -28,7 +25,7 @@ class RecipeDetailViewModel @Inject constructor(
             getRecipe(recipeId = recipeId)
         }
     }
-    
+
     private fun getRecipe(recipeId: Int) {
         getRecipe.execute(recipeId)
             .onEach { dataState ->

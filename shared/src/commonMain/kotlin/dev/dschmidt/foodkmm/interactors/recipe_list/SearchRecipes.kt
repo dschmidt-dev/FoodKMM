@@ -1,4 +1,4 @@
-package dev.dschmidt.foodkmm.datasource.network.interactors.recipe_list
+package dev.dschmidt.foodkmm.interactors.recipe_list
 
 import dev.dschmidt.foodkmm.datasource.network.RecipeService
 import dev.dschmidt.foodkmm.domain.model.Recipe
