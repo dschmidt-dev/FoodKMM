@@ -1,6 +1,8 @@
 package dev.dschmidt.foodkmm.android.presentation.navigation
 
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.HiltViewModelFactory
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -14,6 +16,8 @@ import dev.dschmidt.foodkmm.android.presentation.recipe_detail.RecipeDetailViewM
 import dev.dschmidt.foodkmm.android.presentation.recipe_list.RecipeListScreen
 import dev.dschmidt.foodkmm.android.presentation.recipe_list.RecipeListViewModel
 
+@ExperimentalComposeUiApi
+@ExperimentalMaterialApi
 @ExperimentalStdlibApi
 @Composable
 fun Navigation() {
