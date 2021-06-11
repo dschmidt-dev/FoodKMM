@@ -14,6 +14,7 @@ import dev.dschmidt.foodkmm.android.presentation.recipe_detail.RecipeDetailViewM
 import dev.dschmidt.foodkmm.android.presentation.recipe_list.RecipeListScreen
 import dev.dschmidt.foodkmm.android.presentation.recipe_list.RecipeListViewModel
 
+@ExperimentalStdlibApi
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
@@ -33,7 +34,7 @@ fun Navigation() {
         ) { navBackStackEntry ->
             val factory = HiltViewModelFactory(LocalContext.current, navBackStackEntry = navBackStackEntry)
             val viewModel: RecipeDetailViewModel = viewModel("RecipeDetailViewModel", factory)
-            RecipeDetailScreen(recipeId = viewModel.recipeId.value, dummy = viewModel.dummy.value)
+            RecipeDetailScreen(recipe = viewModel.recipe.value)
         }
     }
 }

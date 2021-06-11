@@ -4,24 +4,32 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.dschmidt.foodkmm.android.di.Dummy
+import dev.dschmidt.foodkmm.datasource.network.RecipeService
+import dev.dschmidt.foodkmm.domain.model.Recipe
+import dev.dschmidt.foodkmm.domain.util.DatetimeUtil
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@ExperimentalStdlibApi
 @HiltViewModel
 class RecipeDetailViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val dummyRepo: Dummy
-): ViewModel() {
+    private val recipeService: RecipeService): ViewModel() {
 
-    val recipeId: MutableState<Int?> = mutableStateOf(null)
-    val dummy: MutableState<String?> = mutableStateOf(null)
+    val recipe: MutableState<Recipe?> = mutableStateOf(null)
 
     init {
         savedStateHandle.get<Int>("recipeId")?.let { recipeId ->
-            this.recipeId.value = recipeId
+            viewModelScope.launch {
+                recipe.value = recipeService.get(recipeId)
+                println("KtorTest: ${recipe.value!!.title}")
+                println("KtorTest: ${recipe.value!!.ingredients}")
+                println("KtorTest: ${DatetimeUtil().humanizeDatetime(recipe.value!!.dateUpdated)}")
+
+            }
         }
-        dummy.value = dummyRepo.description()
     }
 
 }
