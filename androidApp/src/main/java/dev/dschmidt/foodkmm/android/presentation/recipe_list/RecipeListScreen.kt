@@ -1,7 +1,6 @@
 package dev.dschmidt.foodkmm.android.presentation.recipe_list
 
 
-import androidx.compose.compiler.plugins.kotlin.ComposeFqNames.remember
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
@@ -23,12 +22,16 @@ fun RecipeListScreen(
     onClickRecipeListItem: (Int) -> Unit,
 ) {
     AppTheme(displayProgressBar = state.isLoading) {
-        val foodCategories = remember { FoodCategoryUtil().getAllFoodCategories()}
+        val foodCategories = remember { FoodCategoryUtil().getAllFoodCategories() }
         Scaffold(
             topBar = {
                 SearchAppBar(
                     query = state.query,
                     categories = foodCategories,
+                    onSelectedCategoryChanged = {
+                        onTriggerEvent(RecipeListEvents.OnSelectCategory(it))
+                    },
+                    selectedCategory = state.selectedCategory,
                     onQueryChange = {
                         onTriggerEvent(RecipeListEvents.OnUpdateQuery(it))
                     },
