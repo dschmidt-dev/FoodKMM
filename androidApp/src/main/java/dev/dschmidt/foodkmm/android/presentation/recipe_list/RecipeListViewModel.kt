@@ -6,9 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.dschmidt.foodkmm.domain.model.GenericMessageInfo
-import dev.dschmidt.foodkmm.domain.model.Recipe
-import dev.dschmidt.foodkmm.domain.model.UIComponentType
+import dev.dschmidt.foodkmm.domain.model.*
 import dev.dschmidt.foodkmm.domain.util.GenericMessageInfoQueueUtil
 import dev.dschmidt.foodkmm.domain.util.Queue
 import dev.dschmidt.foodkmm.interactors.recipe_list.SearchRecipes
