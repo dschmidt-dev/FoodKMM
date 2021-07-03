@@ -11,6 +11,9 @@ class GetRecipe(private val recipeService: RecipeService) {
     fun execute(recipeId: Int): Flow<DataState<Recipe>> = flow {
         emit(DataState.loading())
         try {
+
+            kotlinx.coroutines.delay(2000)
+
             emit(DataState.data(data = recipeService.get(recipeId)))
         } catch (e: Exception) {
             emit(DataState.error<Recipe>(e))
