@@ -1,20 +1,21 @@
 package dev.dschmidt.foodkmm.domain.util
 
+import dev.dschmidt.foodkmm.domain.model.GenericMessageInfo
+
 data class DataState<T>(
-    val message: String? = null,
+    val message: GenericMessageInfo? = null,
     val data: T? = null,
     val isLoading: Boolean = false,
-    val error: Throwable? = null
 ) {
     companion object {
         fun <T> error(
-            throwable: Throwable
+            message: GenericMessageInfo
         ): DataState<T> {
-            return DataState(message = throwable.message ?: "Unknown Error", error = throwable)
+            return DataState(message = message)
         }
 
         fun <T> data(
-            message: String? = null,
+            message: GenericMessageInfo? = null,
             data: T? = null,
         ): DataState<T> {
             return DataState(message = message, data = data)

@@ -9,6 +9,9 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import dev.dschmidt.foodkmm.android.presentation.components.CircularIndeterminateProgressBar
+import dev.dschmidt.foodkmm.android.presentation.components.ProcessDialogQueue
+import dev.dschmidt.foodkmm.domain.model.GenericMessageInfo
+import dev.dschmidt.foodkmm.domain.util.Queue
 
 private val LightThemeColors = lightColors(
     primary = Blue600,
@@ -35,6 +38,8 @@ private val LightThemeColors = lightColors(
 @Composable
 fun AppTheme(
     displayProgressBar: Boolean,
+    dialogQueue: Queue<GenericMessageInfo> = Queue(mutableListOf()),
+    onRemoveHeadMessageFromQueue: () -> Unit,
     content: @Composable () -> Unit,
 ) {
     MaterialTheme(
@@ -45,8 +50,12 @@ fun AppTheme(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color =Grey1)
+                .background(color = Grey1)
         ){
+            ProcessDialogQueue(
+                dialogQueue = dialogQueue,
+                onRemoveHeadMessageFromQueue = onRemoveHeadMessageFromQueue
+            )
             content()
             CircularIndeterminateProgressBar(isDisplayed = displayProgressBar, verticalBias = 0.3f)
         }
