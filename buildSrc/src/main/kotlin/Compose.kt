@@ -8,7 +8,7 @@ object Compose {
     const val foundation = "androidx.compose.foundation:foundation:${composeVersion}"
     const val compiler = "androidx.compose.compiler:compiler:${composeVersion}"
 
-    private const val constraintLayoutComposeVersion = "1.0.0-alpha03"
+    private const val constraintLayoutComposeVersion = "1.0.0-alpha07"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:${constraintLayoutComposeVersion}"
 
     private const val composeActivitiesVersion = "1.3.0-alpha03"

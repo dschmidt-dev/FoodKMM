@@ -6,6 +6,8 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
+import dev.dschmidt.foodkmm.android.presentation.navigation.RecipeImage
+import dev.dschmidt.foodkmm.android.presentation.recipe_list.components.RecipeCard
 import dev.dschmidt.foodkmm.android.presentation.theme.AppTheme
 import dev.dschmidt.foodkmm.domain.model.Recipe
 
@@ -19,9 +21,9 @@ fun RecipeDetailScreen(
         if (recipe == null) {
             Text("Unable to get the details of this recipe...")
         } else {
-            Column {
-                Text("RecipeDetailScreen: ${recipe.title} with text: ${recipe.ingredients}")
-            }
+            RecipeCard(recipe = recipe, onCLick = {
+
+            })
         }
 
     }

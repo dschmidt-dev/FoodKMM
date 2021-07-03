@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         setContent {
             Navigation()
         }
-
     }
 
 }
