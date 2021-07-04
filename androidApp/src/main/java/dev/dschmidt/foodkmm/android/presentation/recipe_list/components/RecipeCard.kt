@@ -21,13 +21,13 @@ fun RecipeCard(
 ) {
     Card(
         shape = MaterialTheme.shapes.small,
-        onClick = onCLick,
         modifier = Modifier
             .padding(
                 bottom = 6.dp,
                 top = 6.dp,
             )
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable(onClick = onCLick),
         elevation = 8.dp,
     ) {
         Column {

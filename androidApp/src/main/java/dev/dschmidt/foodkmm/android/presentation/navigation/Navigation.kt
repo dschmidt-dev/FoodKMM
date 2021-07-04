@@ -7,10 +7,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.HiltViewModelFactory
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.navArgument
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.compose.*
 import dev.dschmidt.foodkmm.android.presentation.recipe_detail.RecipeDetailScreen
 import dev.dschmidt.foodkmm.android.presentation.recipe_detail.RecipeDetailViewModel
 import dev.dschmidt.foodkmm.android.presentation.recipe_list.RecipeListScreen
