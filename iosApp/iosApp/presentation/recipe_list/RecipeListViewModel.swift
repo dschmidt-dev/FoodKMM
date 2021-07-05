@@ -75,10 +75,17 @@ class RecipeListViewModel: ObservableObject {
     }
     
     func appendRecipes(recipes: [Recipe]) {
-        for recipe in recipes {
-            print("\(recipe)")
-        }
-        //TODO append
+        var currentState = self.state.copy() as! RecipeListState
+        var currentRecipes = currentState.recipes
+        currentRecipes.append(contentsOf: recipes)
+        self.state = self.state.doCopy(
+            isLoading: currentState.isLoading,
+            page: currentState.page,
+            query: currentState.query,
+            selectedCategory: currentState.selectedCategory,
+            recipes: currentRecipes,
+            queue: currentState.queue
+        )
     }
     
     private func handleMessageByUIComponentType(_ message: GenericMessageInfo) {
