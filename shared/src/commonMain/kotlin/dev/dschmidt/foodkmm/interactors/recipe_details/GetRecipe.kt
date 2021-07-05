@@ -1,5 +1,6 @@
 package dev.dschmidt.foodkmm.interactors.recipe_details
 
+import dev.dschmidt.foodkmm.datasource.cache.RecipeCache
 import dev.dschmidt.foodkmm.datasource.network.RecipeService
 import dev.dschmidt.foodkmm.domain.model.GenericMessageInfo
 import dev.dschmidt.foodkmm.domain.model.Recipe
@@ -8,7 +9,7 @@ import dev.dschmidt.foodkmm.domain.util.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class GetRecipe(private val recipeService: RecipeService) {
+class GetRecipe(private val recipeCache: RecipeCache, ){
 
     fun execute(recipeId: Int): Flow<DataState<Recipe>> = flow {
         emit(DataState.loading())
@@ -16,7 +17,7 @@ class GetRecipe(private val recipeService: RecipeService) {
 
             kotlinx.coroutines.delay(2000)
 
-            emit(DataState.data(data = recipeService.get(recipeId)))
+            emit(DataState.data(data = recipeCache.get(recipeId)))
         } catch (e: Exception) {
             emit(DataState.error<Recipe>(
                 GenericMessageInfo

@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dev.dschmidt.foodkmm.datasource.cache.RecipeCache
 import dev.dschmidt.foodkmm.datasource.network.RecipeService
 import dev.dschmidt.foodkmm.interactors.recipe_details.GetRecipe
 import dev.dschmidt.foodkmm.interactors.recipe_list.SearchRecipes
@@ -18,16 +19,17 @@ object InteractorsModule {
     @Provides
     fun provideSearchRecipe(
         recipeService: RecipeService,
+        recipeCache: RecipeCache,
     ): SearchRecipes {
-        return SearchRecipes(recipeService = recipeService)
+        return SearchRecipes(recipeService = recipeService, recipeCache = recipeCache)
     }
 
     @Singleton
     @Provides
     fun provideGetRecipe(
-        recipeService: RecipeService,
+        recipeCache: RecipeCache,
     ): GetRecipe {
-        return GetRecipe(recipeService = recipeService)
+        return GetRecipe(recipeCache = recipeCache)
     }
 
 

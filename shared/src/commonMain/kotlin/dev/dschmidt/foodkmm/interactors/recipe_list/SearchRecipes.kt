@@ -1,5 +1,6 @@
 package dev.dschmidt.foodkmm.interactors.recipe_list
 
+import dev.dschmidt.foodkmm.datasource.cache.RecipeCache
 import dev.dschmidt.foodkmm.datasource.network.RecipeService
 import dev.dschmidt.foodkmm.domain.model.GenericMessageInfo
 import dev.dschmidt.foodkmm.domain.model.Recipe
@@ -11,6 +12,7 @@ import kotlinx.coroutines.flow.flow
 
 class SearchRecipes(
     private val recipeService: RecipeService,
+    private val recipeCache: RecipeCache,
 ) {
     fun execute(
         page:Int,
@@ -30,7 +32,17 @@ class SearchRecipes(
                 throw Exception("Forcing an Error ... Search Failed")
             }
 
-            emit(DataState.data(data =  recipes))
+            recipeCache.insert(recipes)
+
+            val cacheResult = if (query.isBlank()) {
+                recipeCache.getAll(page = page)
+            } else {
+                recipeCache.search(
+                    query = query,
+                    page = page
+                )
+            }
+            emit(DataState.data(data =  cacheResult))
         } catch (e: Exception) {
             emit(DataState.error<List<Recipe>>(
                 GenericMessageInfo
