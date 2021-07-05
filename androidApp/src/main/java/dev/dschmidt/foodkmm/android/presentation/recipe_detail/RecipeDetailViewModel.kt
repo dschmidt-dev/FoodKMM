@@ -49,7 +49,7 @@ class RecipeDetailViewModel @Inject constructor(
 
     private fun getRecipe(recipeId: Int) {
         getRecipe.execute(recipeId)
-            .onEach { dataState ->
+            .collectCommon(viewModelScope) { dataState ->
                 state.value = state.value.copy(isLoading = dataState.isLoading)
 
                 dataState.data?.let { recipe ->
@@ -60,7 +60,6 @@ class RecipeDetailViewModel @Inject constructor(
                     appendToMessageQueue(msg)
                 }
             }
-            .launchIn(viewModelScope)
     }
 
     private fun appendToMessageQueue(messageInfo: GenericMessageInfo) {

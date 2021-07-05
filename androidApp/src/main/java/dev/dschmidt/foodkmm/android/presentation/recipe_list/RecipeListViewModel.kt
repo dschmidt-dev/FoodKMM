@@ -69,7 +69,7 @@ class RecipeListViewModel @Inject constructor(
         searchRecipes.execute(
             page = state.value.page,
             query = state.value.query
-        ).onEach { dataState ->
+        ).collectCommon(viewModelScope) { dataState ->
             state.value = state.value.copy(isLoading = dataState.isLoading)
 
             dataState.data?.let { recipes ->
@@ -80,7 +80,7 @@ class RecipeListViewModel @Inject constructor(
                 appendToMessageQueue(msg)
 
             }
-        }.launchIn(viewModelScope)
+        }
     }
 
     private fun appendRecipes(recipes: List<Recipe>) {

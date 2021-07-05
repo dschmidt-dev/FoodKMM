@@ -5,7 +5,9 @@ import dev.dschmidt.foodkmm.datasource.network.RecipeService
 import dev.dschmidt.foodkmm.domain.model.GenericMessageInfo
 import dev.dschmidt.foodkmm.domain.model.Recipe
 import dev.dschmidt.foodkmm.domain.model.UIComponentType
+import dev.dschmidt.foodkmm.domain.util.CommonFlow
 import dev.dschmidt.foodkmm.domain.util.DataState
+import dev.dschmidt.foodkmm.domain.util.asCommonFlow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -17,7 +19,7 @@ class SearchRecipes(
     fun execute(
         page:Int,
         query: String,
-    ): Flow<DataState<List<Recipe>>> = flow {
+    ): CommonFlow<DataState<List<Recipe>>> = flow {
         emit(DataState.loading<List<Recipe>>())
 
         //emit recipes
@@ -54,5 +56,5 @@ class SearchRecipes(
                     .throwable(e)
                     .build()))
         }
-    }
+    }.asCommonFlow()
 }
