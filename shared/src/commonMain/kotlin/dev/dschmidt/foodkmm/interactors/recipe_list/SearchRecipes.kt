@@ -44,7 +44,7 @@ class SearchRecipes(
                     page = page
                 )
             }
-            emit(DataState.data(data =  cacheResult))
+            emit(DataState.data(message = null, data = cacheResult))
         } catch (e: Exception) {
             emit(DataState.error<List<Recipe>>(
                 GenericMessageInfo

@@ -13,7 +13,7 @@ class RecipeServiceImpl(
 
     override suspend fun search(page: Int, query: String): List<Recipe> {
         return httpClient.get<RecipeSearchResponse> {
-            url("$baseUrl/search/?age$page=&query=$query")
+            url("$baseUrl/search/?page=$page&query=$query")
             header("Authorization", TOKEN)
         }.results.toRecipeList()
     }
