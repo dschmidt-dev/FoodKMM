@@ -14,17 +14,19 @@ struct SearchAppBar: View {
     @State var query: String
     
     private let foodCateogires: [FoodCategory]
-    
+    private let selectedCategory: FoodCategory?
     private let onTriggerEvent: (RecipeListEvents) -> Void
     
     init(
         query: String,
+        selectedCategory: FoodCategory?,
         foodCateogires: [FoodCategory],
          onTriggerEvent: @escaping (RecipeListEvents) -> Void
     ) {
         self.onTriggerEvent = onTriggerEvent
         self._query = State(initialValue: query)
         self.foodCateogires = foodCateogires
+        self.selectedCategory = selectedCategory
     }
     
     var body: some View {
@@ -38,6 +40,7 @@ struct SearchAppBar: View {
                         onTriggerEvent(RecipeListEvents.NewSearch())
                     }
                 )
+                .font(Font.custom("Comic Sans MS", size: 17))
                 .onChange(of: query, perform: { value in
                     onTriggerEvent(RecipeListEvents.OnUpdateQuery(query: value))
                 })
@@ -46,10 +49,10 @@ struct SearchAppBar: View {
             ScrollView(.horizontal) {
                 HStack(spacing: 10) {
                     ForEach(foodCateogires, id: \.self) { category in
-                        FoodCategoryChip(category: category.value, isSelected: false)
+                        FoodCategoryChip(category: category.value, isSelected: selectedCategory == category)
                             .onTapGesture {
                                 query = category.value
-                                //TODO update query
+                                onTriggerEvent(RecipeListEvents.OnSelectCategory(category: category))
                             }
                     }
                 }

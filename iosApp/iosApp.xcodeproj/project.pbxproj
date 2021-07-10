@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,12 @@
 		E1BCCA2D9C6A5C6E0B7D018A /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9801F2BD13CF615EC81C427 /* Pods_iosApp.framework */; };
 		E741F39726930337007C796F /* RecipeListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E741F39626930337007C796F /* RecipeListScreen.swift */; };
 		E741F39926930506007C796F /* RecipeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E741F39826930506007C796F /* RecipeListViewModel.swift */; };
+		E768A17226978F9D004B9364 /* RecipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E768A17126978F9D004B9364 /* RecipeCard.swift */; };
+		E768A1752697975E004B9364 /* RecipeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E768A1742697975E004B9364 /* RecipeDetailViewModel.swift */; };
+		E768A177269798A5004B9364 /* RecipeDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E768A176269798A5004B9364 /* RecipeDetailScreen.swift */; };
+		E768A17A26998A66004B9364 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E768A17926998A66004B9364 /* RecipeView.swift */; };
+		E768A17D26998CE4004B9364 /* Comic Sans MS.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E768A17C26998CE4004B9364 /* Comic Sans MS.ttf */; };
+		E768A17F26998E38004B9364 /* DefaultText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E768A17E26998E38004B9364 /* DefaultText.swift */; };
 		E79A05BB2697550F00602A38 /* SearchAppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79A05BA2697550F00602A38 /* SearchAppBar.swift */; };
 		E79A05BD26975A4600602A38 /* FoodCategoryChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79A05BC26975A4600602A38 /* FoodCategoryChip.swift */; };
 /* End PBXBuildFile section */
@@ -24,6 +30,12 @@
 		CF3123A0C866594F1F926E07 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		E741F39626930337007C796F /* RecipeListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListScreen.swift; sourceTree = "<group>"; };
 		E741F39826930506007C796F /* RecipeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewModel.swift; sourceTree = "<group>"; };
+		E768A17126978F9D004B9364 /* RecipeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCard.swift; sourceTree = "<group>"; };
+		E768A1742697975E004B9364 /* RecipeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModel.swift; sourceTree = "<group>"; };
+		E768A176269798A5004B9364 /* RecipeDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailScreen.swift; sourceTree = "<group>"; };
+		E768A17926998A66004B9364 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
+		E768A17C26998CE4004B9364 /* Comic Sans MS.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comic Sans MS.ttf"; sourceTree = "<group>"; };
+		E768A17E26998E38004B9364 /* DefaultText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultText.swift; sourceTree = "<group>"; };
 		E79A05BA2697550F00602A38 /* SearchAppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppBar.swift; sourceTree = "<group>"; };
 		E79A05BC26975A4600602A38 /* FoodCategoryChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCategoryChip.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +81,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				E768A17B26998CBA004B9364 /* fonts */,
 				E741F39426930305007C796F /* presentation */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
@@ -88,6 +101,7 @@
 		E741F39426930305007C796F /* presentation */ = {
 			isa = PBXGroup;
 			children = (
+				E768A17326979749004B9364 /* recipe_detail */,
 				E79A05B9269754F400602A38 /* components */,
 				E741F3952693030E007C796F /* recipe_list */,
 			);
@@ -103,11 +117,39 @@
 			path = recipe_list;
 			sourceTree = "<group>";
 		};
+		E768A17326979749004B9364 /* recipe_detail */ = {
+			isa = PBXGroup;
+			children = (
+				E768A17826998A58004B9364 /* components */,
+				E768A1742697975E004B9364 /* RecipeDetailViewModel.swift */,
+				E768A176269798A5004B9364 /* RecipeDetailScreen.swift */,
+			);
+			path = recipe_detail;
+			sourceTree = "<group>";
+		};
+		E768A17826998A58004B9364 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				E768A17926998A66004B9364 /* RecipeView.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		E768A17B26998CBA004B9364 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E768A17C26998CE4004B9364 /* Comic Sans MS.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		E79A05B9269754F400602A38 /* components */ = {
 			isa = PBXGroup;
 			children = (
 				E79A05BA2697550F00602A38 /* SearchAppBar.swift */,
 				E79A05BC26975A4600602A38 /* FoodCategoryChip.swift */,
+				E768A17126978F9D004B9364 /* RecipeCard.swift */,
+				E768A17E26998E38004B9364 /* DefaultText.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -123,6 +165,7 @@
 				7555FF77242A565900829871 /* Sources */,
 				7555FF79242A565900829871 /* Resources */,
 				DCD51435CF4AB78816629CFF /* Frameworks */,
+				3AFF26522A318DBDBD5DD717 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -171,12 +214,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E768A17D26998CE4004B9364 /* Comic Sans MS.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3AFF26522A318DBDBD5DD717 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D39E07CE21AB91D7257F0680 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -206,11 +267,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E768A17A26998A66004B9364 /* RecipeView.swift in Sources */,
 				E741F39726930337007C796F /* RecipeListScreen.swift in Sources */,
+				E768A1752697975E004B9364 /* RecipeDetailViewModel.swift in Sources */,
 				E79A05BB2697550F00602A38 /* SearchAppBar.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				E79A05BD26975A4600602A38 /* FoodCategoryChip.swift in Sources */,
+				E768A17F26998E38004B9364 /* DefaultText.swift in Sources */,
 				E741F39926930506007C796F /* RecipeListViewModel.swift in Sources */,
+				E768A177269798A5004B9364 /* RecipeDetailScreen.swift in Sources */,
+				E768A17226978F9D004B9364 /* RecipeCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
