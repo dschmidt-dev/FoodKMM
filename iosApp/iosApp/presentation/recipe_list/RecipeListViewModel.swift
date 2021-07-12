@@ -17,6 +17,8 @@ class RecipeListViewModel: ObservableObject {
     // State
     @Published var state: RecipeListState = RecipeListState()
     
+    @Published var showDialog: Bool = false
+    
     init(
             searchRecipes: SearchRecipes,
             foodCategoryUtil: FoodCategoryUtil
@@ -38,9 +40,8 @@ class RecipeListViewModel: ObservableObject {
             onUpdateQuery(query: (stateEvent as! RecipeListEvents.OnUpdateQuery).query)
         case is RecipeListEvents.OnSelectCategory:
             onUpdateSelectedCategory(foodCategory: (stateEvent as! RecipeListEvents.OnSelectCategory).category)
-            doNothing()
         case RecipeListEvents.OnRemoveHeadMessageFromQueue():
-            doNothing()
+            removeHeadFromQueue()
         default:
             doNothing()
         }
@@ -119,7 +120,7 @@ class RecipeListViewModel: ObservableObject {
             })
         }catch{
             // build an error
-            //self.handleMessageByUIComponentType(message!.build())
+//            self.handleMessageByUIComponentType()
         }
     }
     
@@ -149,7 +150,13 @@ class RecipeListViewModel: ObservableObject {
         }
     
     private func handleMessageByUIComponentType(_ message: GenericMessageInfo){
-        // TODO("append to queue or 'None'")
+        switch message.uiComponentType {
+        case UIComponentType.Dialog():
+            appendToQueue(message: message)
+        case UIComponentType.None():
+            print("\(message.description)")
+        default: doNothing()
+        }
     }
     
     private func doNothing(){
@@ -179,23 +186,50 @@ class RecipeListViewModel: ObservableObject {
      *  Basically if more then one action must be taken then it cannot be updated with this function.
      *  ex: updating selected category requires us to: 1) update category, 2) update the query, 3) trigger new search event
      */
-        func updateState(
-            isLoading: Bool? = nil,
-            page: Int? = nil,
-            query: String? = nil,
-            bottomRecipe: Recipe? = nil,
-            queue: Queue<GenericMessageInfo>? = nil
-        ){
-            let currentState = (self.state.copy() as! RecipeListState)
-            self.state = self.state.doCopy(
-                isLoading: isLoading ?? currentState.isLoading,
-                page: Int32(page ?? Int(currentState.page)),
-                query: query ?? currentState.query,
-                selectedCategory: currentState.selectedCategory,
-                recipes: currentState.recipes,
-                bottomRecipe:  bottomRecipe ?? currentState.bottomRecipe,
-                queue: queue ?? currentState.queue
-            )
-        }
+    func updateState(
+        isLoading: Bool? = nil,
+        page: Int? = nil,
+        query: String? = nil,
+        bottomRecipe: Recipe? = nil,
+        queue: Queue<GenericMessageInfo>? = nil
+    ){
+        let currentState = (self.state.copy() as! RecipeListState)
+        self.state = self.state.doCopy(
+            isLoading: isLoading ?? currentState.isLoading,
+            page: Int32(page ?? Int(currentState.page)),
+            query: query ?? currentState.query,
+            selectedCategory: currentState.selectedCategory,
+            recipes: currentState.recipes,
+            bottomRecipe:  bottomRecipe ?? currentState.bottomRecipe,
+            queue: queue ?? currentState.queue
+        )
+        shouldShowDialog()
+    }
+
+    private func shouldShowDialog() {
+        let currentState = self.state.copy() as! RecipeListState
+        showDialog = currentState.queue.items.count > 0
+    }
     
+    private func appendToQueue(message: GenericMessageInfo) {
+        let currentState = self.state.copy() as! RecipeListState
+        let queue = currentState.queue
+        let queueUtil = GenericMessageInfoQueueUtil()
+        if !queueUtil.doesMessageAlreadyExistInQueue(queue: queue,
+                                                     messageInfo: message) {
+            queue.add(element: message)
+            updateState(queue: queue)
+        }
+    }
+    
+    func removeHeadFromQueue() {
+        let currentState = self.state.copy() as! RecipeListState
+        let queue = currentState.queue
+        do {
+            try queue.remove()
+            updateState(queue: queue)
+        } catch {
+            print("\(error)")
+        }
+    }
 }

@@ -14,8 +14,13 @@ import kotlinx.coroutines.flow.flow
 class GetRecipe(private val recipeCache: RecipeCache, ){
 
     fun execute(recipeId: Int): CommonFlow<DataState<Recipe>> = flow {
-        emit(DataState.loading())
         try {
+
+            emit(DataState.loading())
+
+            if (recipeId == 1 || recipeId == 5) {
+                throw Exception("Invalid RecipeID: $recipeId")
+            }
 
             kotlinx.coroutines.delay(2000)
 

@@ -17,6 +17,7 @@
 		E768A17A26998A66004B9364 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E768A17926998A66004B9364 /* RecipeView.swift */; };
 		E768A17D26998CE4004B9364 /* Comic Sans MS.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E768A17C26998CE4004B9364 /* Comic Sans MS.ttf */; };
 		E768A17F26998E38004B9364 /* DefaultText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E768A17E26998E38004B9364 /* DefaultText.swift */; };
+		E768A18126999031004B9364 /* GenericMessageInfoAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E768A18026999031004B9364 /* GenericMessageInfoAlert.swift */; };
 		E79A05BB2697550F00602A38 /* SearchAppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79A05BA2697550F00602A38 /* SearchAppBar.swift */; };
 		E79A05BD26975A4600602A38 /* FoodCategoryChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79A05BC26975A4600602A38 /* FoodCategoryChip.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,7 @@
 		E768A17926998A66004B9364 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		E768A17C26998CE4004B9364 /* Comic Sans MS.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comic Sans MS.ttf"; sourceTree = "<group>"; };
 		E768A17E26998E38004B9364 /* DefaultText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultText.swift; sourceTree = "<group>"; };
+		E768A18026999031004B9364 /* GenericMessageInfoAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericMessageInfoAlert.swift; sourceTree = "<group>"; };
 		E79A05BA2697550F00602A38 /* SearchAppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppBar.swift; sourceTree = "<group>"; };
 		E79A05BC26975A4600602A38 /* FoodCategoryChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCategoryChip.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,8 +103,8 @@
 		E741F39426930305007C796F /* presentation */ = {
 			isa = PBXGroup;
 			children = (
-				E768A17326979749004B9364 /* recipe_detail */,
 				E79A05B9269754F400602A38 /* components */,
+				E768A17326979749004B9364 /* recipe_detail */,
 				E741F3952693030E007C796F /* recipe_list */,
 			);
 			path = presentation;
@@ -150,6 +152,7 @@
 				E79A05BC26975A4600602A38 /* FoodCategoryChip.swift */,
 				E768A17126978F9D004B9364 /* RecipeCard.swift */,
 				E768A17E26998E38004B9364 /* DefaultText.swift */,
+				E768A18026999031004B9364 /* GenericMessageInfoAlert.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				E741F39726930337007C796F /* RecipeListScreen.swift in Sources */,
 				E768A1752697975E004B9364 /* RecipeDetailViewModel.swift in Sources */,
 				E79A05BB2697550F00602A38 /* SearchAppBar.swift in Sources */,
+				E768A18126999031004B9364 /* GenericMessageInfoAlert.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				E79A05BD26975A4600602A38 /* FoodCategoryChip.swift in Sources */,
 				E768A17F26998E38004B9364 /* DefaultText.swift in Sources */,
